@@ -4,16 +4,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
-save_path = '/home/djaoet/wrkgrp/Dora/Study_Forrest/Rect Alexnet/Frames_Per_Sub_Remodnav/'
+save_path = '/path/Frames_Per_Sub_Remodnav/'
 
-sub_list = ['sub-01','sub-02','sub-03','sub-04','sub-05','sub-09','sub-10','sub-14','sub-15','sub-16','sub-17','sub-18','sub-19','sub-20']
+sub_list = []
 
 
 for run in tqdm(['1','2','3','4','5','6','7','8']):
     
     for sub in sub_list:
         
-        tsv_file = '/home/djaoet/wrkgrp/Dora/Study_Forrest/Eye Tracking Tutorial Maie/Remodnav/'+sub+'-run'+run+'.tsv'
+        tsv_file = '/path/Remodnav/'+sub+'-run'+run+'.tsv'
         
         #open tsv file in pandas dataframe
         with open(tsv_file, newline='') as f:
