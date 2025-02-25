@@ -12,7 +12,6 @@ model.eval()
 
 preprocess = transforms.Compose([
     transforms.Resize(224),
-    #transforms.CenterCrop(224),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
@@ -83,11 +82,8 @@ def save_features(runs):
                     input_batch = input_batch.to('cuda')
                     model.to('cuda')
                 # Run the predictions
-                # Run the predictions
                 layer1 = model.features[:layer](input_batch)
                 layer1_shrunk = shrink_features(layer1)
-                
-                #layer1_array = layer1.detach().numpy()
                 layer1_shrunk_array = layer1_shrunk.detach().numpy()
                 # Save them to data array
                 data[j]= layer1_shrunk_array[0]
