@@ -301,21 +301,14 @@ The script loads all encoding model results, applies group-level statistics, and
 
 ## Dependencies
 
-**Pipeline (Steps 1–5):**
-```
-numpy scipy scikit-learn torch torchvision joblib tqdm pandas
-```
-
-**Analysis and figures (`analysis.py`):**
-```
-numpy scipy scikit-learn nibabel nilearn siibra seaborn matplotlib pandas
-```
-
-Install all at once with:
+Install all dependencies with:
 
 ```bash
-pip install numpy scipy scikit-learn torch torchvision joblib tqdm pandas matplotlib nibabel nilearn siibra seaborn
+pip install -r requirements.txt
 ```
+
+For GPU-accelerated CNN feature extraction (Step 2), install the CUDA-enabled PyTorch build for your platform instead of the default CPU wheel — see [pytorch.org/get-started/locally](https://pytorch.org/get-started/locally/).
+
 
 ---
 
