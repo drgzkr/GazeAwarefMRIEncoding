@@ -5,6 +5,7 @@ import numpy as np
 import os
 from tqdm import trange
 from joblib import Parallel, delayed
+from config import FRAMES_DIR, FIXATIONS_DIR, VGG_BY_RUN_DIR
 
 model = torch.hub.load('pytorch/vision:v0.10.0', 'vgg19_bn', pretrained=True)
 
@@ -22,10 +23,10 @@ shrink_features = transforms.Compose([
 ])
         
 def save_features(runs):
-    save_dir = '/path/vgg19/FeaturesbyRunsRemodnav/'
+    save_dir = VGG_BY_RUN_DIR
     
-    dir_name = '/path/stimulus/frames native/Run'+str(runs)+'/'
-    only_frames = np.load('/path/Frames_Per_Sub_Remodnav/Needed_frames_Run_'+str(runs)+'.npy')    
+    dir_name = os.path.join(FRAMES_DIR, 'Run'+str(runs))
+    only_frames = np.load(os.path.join(FIXATIONS_DIR, 'Needed_frames_Run_'+str(runs)+'.npy')) 
 
     for layer_count, layer in enumerate([7,14,27,40,53]):
         
@@ -89,7 +90,7 @@ def save_features(runs):
                 data[j]= layer1_shrunk_array[0]
             
 
-        np.save(save_dir + 'Run' + str(runs) + '_Layer' +str(layer_count)+'_vgg19_features_resized_to_7_16.npy',data)
+        np.save(os.path.join(save_dir, 'Run'+str(runs)+'_Layer'+str(layer_count)+'_vgg19_features_resized_to_7_16.npy'), data)
 
     
     
