@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from config import REMODNAV_DIR, FIXATIONS_DIR
+import os
 
 sub_list = ['sub-01','sub-02','sub-03','sub-04','sub-09','sub-10','sub-14','sub-15','sub-16','sub-17','sub-18','sub-19','sub-20']
 frames_set = set()
