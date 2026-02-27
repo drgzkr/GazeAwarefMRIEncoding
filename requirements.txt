@@ -1,0 +1,40 @@
+# ============================================================
+# Requirements for:
+# "Neural network-based encoding in free-viewing fMRI
+#  with gaze-aware models" — Gözükara et al., 2026
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# For GPU-accelerated CNN feature extraction (Step 2), install
+# the CUDA-enabled PyTorch build for your platform instead of
+# the default CPU build resolved here:
+#   https://pytorch.org/get-started/locally/
+# ============================================================
+
+# ----------------------------------------
+# Core scientific stack (all steps)
+# ----------------------------------------
+numpy>=1.24,<3
+scipy>=1.10
+scikit-learn>=1.2
+pandas>=1.5
+joblib>=1.2
+tqdm>=4.64
+
+# ----------------------------------------
+# CNN feature extraction (Step 2)
+# ----------------------------------------
+torch>=2.0
+torchvision>=0.15
+Pillow>=9.0
+
+# ----------------------------------------
+# Analysis and figures (analysis.py)
+# ----------------------------------------
+matplotlib>=3.7
+seaborn>=0.12
+statsmodels>=0.14
+nibabel>=5.0
+nilearn>=0.10
+siibra>=1.0
