@@ -308,6 +308,7 @@ for sub in tqdm(sub_list):
         print('results saved')
     except:
         print('exception occured 🤷‍')
-np.save(os.path.join(RESULTS_DIR, str(sub)+'_noPRF_hyperlayer_fast_baseline_gammas.npy'), gammas, allow_pickle=True)
+np.save(os.path.join(RESULTS_DIR, 'noPRF_hyperlayer_fast_baseline_gammas.npy'), gammas, allow_pickle=True)
+
 
 
