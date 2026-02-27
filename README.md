@@ -96,7 +96,7 @@ Two files are needed by `analysis.py` to project results into MNI space and onto
 
 ### Weights and gaze distributions — `derivatives/weights_and_gaze/`
 
-Two `.pkl` files are required by `analysis.py` for Figures 3a–d. These are now generated automatically by `generate_weights_and_gaze.py` (Step 5.5) from existing pipeline outputs — no manual download or export is needed:
+Two `.pkl` files are required by `analysis.py` for Figures 3a–d. These are now generated automatically by `generate_weights_and_gaze.py` (Step 5.5) from existing pipeline outputs:
 
 - `all_subs_weights_over_space.pkl` — per-subject baseline model spatial weight maps, shape `(7, 16, 19629)` per subject, derived from the weight files saved by `precision_baseline.py`
 - `all_subs_gaze_dists.pkl` — per-subject gaze density heatmaps over the 7×16 spatial grid, derived from the fixation files saved by `remodnav_frame_selection.py`
