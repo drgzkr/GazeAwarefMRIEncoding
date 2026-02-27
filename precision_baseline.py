@@ -272,9 +272,10 @@ for sub in tqdm(sub_list,position=0):
             results[voxel_count,0], results[voxel_count,1] = pearsonr(predicted,real)
     print('Mean Performance: ',np.mean(results[:,0]))
     np.save(os.path.join(RESULTS_DIR, str(sub)+'_hyperlayer_fast_baseline_results.npy'), results, allow_pickle=True)
-np.save(os.path.join(RESULTS_DIR, '_hyperlayer_fast_baseline_gammas.npy'), gammas, allow_pickle=True)
+np.save(os.path.join(RESULTS_DIR, 'hyperlayer_fast_baseline_gammas.npy'), gammas, allow_pickle=True)
 
 
 print('results saved ✨')
+
 
 
