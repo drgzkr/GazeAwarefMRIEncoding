@@ -115,7 +115,7 @@ for sub in tqdm(sub_list,position=0):
 
     # x and y sizes of feature maps to be used. Can change each flexibly
     print('features are being loaded ⏳')
-	sub_features = np.load(os.path.join(HYPERLAYERS_DIR, 'Model_features_'+sub+'_hyperlayer_7_16.npy'), allow_pickle=True)
+    sub_features = np.load(os.path.join(HYPERLAYERS_DIR, 'Model_features_'+sub+'_hyperlayer_7_16.npy'), allow_pickle=True)
     print('features loaded 👌')
     # load brain data
     sub_movie_data = np.load(os.path.join(FMRI_DIR, 'normalized_masked_concat_movie_'+sub+'.npy'), allow_pickle=True)
@@ -276,6 +276,7 @@ np.save(os.path.join(RESULTS_DIR, 'hyperlayer_fast_baseline_gammas.npy'), gammas
 
 
 print('results saved ✨')
+
 
 
 
