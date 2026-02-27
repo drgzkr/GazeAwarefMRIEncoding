@@ -8,6 +8,8 @@ import numpy as np
 from joblib import Parallel, delayed
 from sklearn.linear_model import Ridge # SAVE MODELS AND WEIGHTS
 from sklearn.linear_model import RidgeCV
+import os
+from config import FIXATIONS_DIR, HYPERLAYERS_DIR, FMRI_DIR, PRF_DIR, RESULTS_DIR
 from scipy.stats import pearsonr
 from sklearn.metrics import mean_squared_error
 import warnings
@@ -126,11 +128,11 @@ def parallel_encoder(sub_count,test_percent):
 
     ## lOAD THE DATA 
     # load features per frames and prf estimates per voxel
-    pr_estimates = np.load('/projects/0/rusr35064/pRF_Estimates/no_threshold_prf_estimates_array_cover10_'+sub+'.npy',allow_pickle=True)
-    sub_features = np.load('/projects/0/rusr35064/HyperlayersBySubsRemodnav/Model_features_'+sub+'_hyperlayer_7_16.npy',allow_pickle=True)
+    pr_estimates = np.load(os.path.join(PRF_DIR, 'no_threshold_prf_estimates_array_cover10_'+sub+'.npy'), allow_pickle=True)
+    sub_features = np.load(os.path.join(HYPERLAYERS_DIR, 'Model_features_'+sub+'_hyperlayer_7_16.npy'), allow_pickle=True)
     
     # load brain data
-    sub_movie_data = np.load('/projects/0/rusr35064/Movie_Data/normalized_masked_concat_movie_'+sub+'.npy',allow_pickle=True)
+    sub_movie_data = np.load(os.path.join(FMRI_DIR, 'normalized_masked_concat_movie_'+sub+'.npy'), allow_pickle=True)
 
     load_end = time.time()
     print("Data Loaded in ",load_end - load_start,' seconds')
@@ -141,7 +143,7 @@ def parallel_encoder(sub_count,test_percent):
     counter = 0 
     
     for run in ['1','2','3','4','5','6','7','8']:
-        run_fixations = np.load('/projects/0/rusr35064/Frames_Per_Sub_Remodnav/Needed_frames_'+sub+'-run'+run+'.npy',allow_pickle=True)
+        run_fixations = np.load(os.path.join(FIXATIONS_DIR, sub+'-run'+run+'.npy'), allow_pickle=True)
         concat_fixations[counter:counter+run_fixations.shape[0]] = run_fixations
         run_fix_lens.append(run_fixations.shape[0])
         run_sub_frames.append(run_fixations[:,0].astype(int))
@@ -378,7 +380,7 @@ def parallel_encoder(sub_count,test_percent):
         except:
             print('Empty Voxel at: '+str(voxel_count)+' '+sub)
 
-    save_name = '/home/gozukara/Precision/Precision_Results/Nas_Results/precision_results_dictionary_list_'+sub+'.pkl'
+    save_name = os.path.join(RESULTS_DIR, 'precision_results_dictionary_list_'+sub+'.pkl')
     with open(save_name, 'wb') as file:
         pickle.dump(output_summary, file)
         print(sub, 'Results Saved.')
