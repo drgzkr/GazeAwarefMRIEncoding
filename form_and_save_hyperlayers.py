@@ -14,7 +14,7 @@ sub_list = ['sub-01','sub-02','sub-03','sub-04','sub-09','sub-10','sub-14','sub-
 
 for sub in tqdm(sub_list):
     
-    sub_features_shape = sub_features_shape = np.load(os.path.join(VGG_BY_SUB_DIR, 'Model_Features_'+sub+'_concat_run_layer0_7_16.npy')).shape
+    sub_features_shape = np.load(os.path.join(VGG_BY_SUB_DIR, 'Model_Features_'+sub+'_concat_run_layer0_7_16.npy')).shape
     sub_feature_sizes = np.array([64,128,256,512,512])
     zero_sub_feature_sizes = np.insert(np.cumsum(sub_feature_sizes),0,0)
     
