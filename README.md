@@ -6,6 +6,8 @@ Code for reproducing the results in:
 > Dora Gözükara, Nasir Ahmad, Katja Seeliger, Djamari Oetringer, Linda Geerligs
 > *bioRxiv*, 2026.
 
+Contact: `dora.gozukara@donders.ru.nl`
+
 ---
 
 ## Contents
