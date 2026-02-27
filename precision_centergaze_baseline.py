@@ -7,6 +7,7 @@ import warnings
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
+from config import FIXATIONS_DIR, HYPERLAYERS_DIR, FMRI_DIR, RESULTS_DIR
 
 warnings.filterwarnings('ignore')
 
@@ -114,10 +115,10 @@ for sub in tqdm(sub_list):
     #sub = sub_list[sub_count]
 
     # load features per frames and prf estimates per voxel
-    sub_features = np.load('/home/djaoet/wrkgrp/Dora/Study_Forrest/vgg19/HyperlayersBySubsRemodnav/Model_features_'+sub+'_hyperlayer_7_16.npy',allow_pickle=True)
+    sub_features = sub_features = np.load(os.path.join(HYPERLAYERS_DIR, 'Model_features_'+sub+'_hyperlayer_7_16.npy'), allow_pickle=True)
     print('features loaded')
     # load brain data
-    sub_movie_data = np.load('/home/djaoet/wrkgrp/Dora/Study_Forrest/Movie_Data/normalized_masked_concat_movie_'+sub+'.npy',allow_pickle=True)
+    sub_movie_data = np.load(os.path.join(FMRI_DIR, 'normalized_masked_concat_movie_'+sub+'.npy'), allow_pickle=True)
     print('fMRI data loaded')
     # load concatenated fixation frames and coordinates, and collect some info about runs
     concat_fixations = np.zeros((sub_features.shape[0],3))
@@ -126,7 +127,7 @@ for sub in tqdm(sub_list):
     counter = 0
 
     for run in ['1','2','3','4','5','6','7','8']:
-        run_fixations = np.load('/home/djaoet/wrkgrp/Dora/Study_Forrest/Rect Alexnet/Frames_Per_Sub_Remodnav/Needed_frames_'+sub+'-run'+run+'.npy',allow_pickle=True)
+        run_fixations = np.load(os.path.join(FIXATIONS_DIR, sub+'-run'+run+'.npy'), allow_pickle=True)
         concat_fixations[counter:counter+run_fixations.shape[0]] = run_fixations
         run_fix_lens.append(run_fixations.shape[0])
         run_sub_frames.append(run_fixations[:,0].astype(int))
@@ -307,8 +308,9 @@ for sub in tqdm(sub_list):
         print(best_gamma)
         gammas.append(best_gamma)
 
-        np.save('/home/djaoet/wrkgrp/Dora/Study_Forrest/FastBaselineResults/'+str(sub)+'_centergaze_hyperlayer_fast_baseline_results',results,allow_pickle=True)
+        np.save(os.path.join(RESULTS_DIR, str(sub)+'_centergaze_hyperlayer_fast_baseline_results.npy'), results, allow_pickle=True)
         print('results saved')
     except:
         print('exception occured 🤷‍')
-np.save('/home/djaoet/wrkgrp/Dora/Study_Forrest/FastBaselineResults/'+str(sub)+'_centergaze_hyperlayer_fast_baseline_gammas',gammas,allow_pickle=True)
+np.save(os.path.join(RESULTS_DIR, str(sub)+'_centergaze_hyperlayer_fast_baseline_gammas.npy'), gammas, allow_pickle=True)
+
