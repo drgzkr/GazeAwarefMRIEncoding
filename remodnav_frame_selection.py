@@ -9,7 +9,7 @@ import os
 sub_list = ['sub-01','sub-02','sub-03','sub-04','sub-09','sub-10','sub-14','sub-15','sub-16','sub-17','sub-18','sub-19','sub-20']
 
 for run in tqdm(['1','2','3','4','5','6','7','8']):
-    
+    frames_set = set()
     for sub in sub_list:
         
         tsv_file = os.path.join(REMODNAV_DIR, sub+'-run'+run+'.tsv')
