@@ -8,6 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from config import FIXATIONS_DIR, HYPERLAYERS_DIR, FMRI_DIR, RESULTS_DIR
+import os
 
 warnings.filterwarnings('ignore')
 
@@ -313,4 +314,5 @@ for sub in tqdm(sub_list):
     except:
         print('exception occured 🤷‍')
 np.save(os.path.join(RESULTS_DIR, str(sub)+'_centergaze_hyperlayer_fast_baseline_gammas.npy'), gammas, allow_pickle=True)
+
 
