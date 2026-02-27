@@ -324,7 +324,7 @@ palette   = ['yellow', 'orange', 'red', 'darkgrey', 'grey']
 
 ax.hist(np.mean(no_PRF_baseline_performance, axis=0),
         alpha=0.7, label='GazeOnly',    bins=bin_edges, color=palette[0], zorder=-1)
-ax.hist(np.mean(precision_performance, axis=0),
+ax.hist(np.mean(no_PRF_baseline_performance, axis=0),
         alpha=0.7, label='PRF+Gaze',   bins=bin_edges, color=palette[1])
 ax.hist(np.mean(baseline_performance, axis=0),
         alpha=0.7, label='Baseline',   bins=bin_edges, color=palette[2], zorder=-2)
@@ -509,7 +509,7 @@ long_plot(tex_l, tex_r, title='Fig3b_GroupMedian_GazeWeightCorr',
 print('Plotting Figure 3c top (performance vs gaze-weight correlation)...')
 
 mean_gaze_weight_corr = np.nanmean(np.array(all_subs_gaze_weight_corrs), axis=1)
-mean_gaze_perf        = np.nanmean(precision_performance, axis=1)
+mean_gaze_perf        = np.nanmean(no_PRF_baseline_performance, axis=1)
 mean_base_perf        = np.nanmean(baseline_performance,  axis=1)
 
 fig, ax = plt.subplots(figsize=(8, 4), dpi=300)
